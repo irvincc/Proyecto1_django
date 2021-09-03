@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+    <html>
+       <head>
+           <meta charset="utf-8">
+           <meta name="viewport" content="width=device-width, initial-scale=1">
+           <meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
+           <title>{% block titulo %}Listado{% endblock titulo %}</title>
+        </head>
+        <body>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12-search">
+                        <form  method="get">
+                            <div id="custom-search-imput">
+                                <div class="imput-group col-md-12">
+                                    <input type="taxt" class="form-control" placeholder="Buscar..." name="buscar" >
+                                    <spam class="imput-group-list">
+                                        <i class="icon icon-search"></i>
+                                        <button type="submit" class="buton btn-success">Buscar</button>
+                                    </spam>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% block cuerpo %}
+            <h1>Templete listado</h1>
+            <table border="2">
+                <thead>
+                    <tr>
+                        <td>Empresa</td>
+                        <th>Departamento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Correo</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Telefono</th>
+                        <th>Fecha ingreso</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for persona in personas %}
+                    <tr>
+                        <td>{{persona.empresa}}</td>
+                        <td>{{persona.departamento}}</td>
+                        <td>{{persona.nombre}}</td>
+                        <td>{{persona.apellido}}</td>
+                        <td>{{persona.correo}}</td>
+                        <td>{{persona.fecha_de_nacimineto}}</td>
+                        <td>{{persona.telefono}}</td>
+                        <td>{{persona.fecha_ingrso}}</td>
+                        <td><a href="{% url 'editar_empleado' persona.id %}">Editar</a>  <a href="{% url 'eliminar_empleado' persona.id %}">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endblock cuerpo%}
+        </body> 
+    </html>
